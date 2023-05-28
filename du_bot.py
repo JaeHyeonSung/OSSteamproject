@@ -15,4 +15,4 @@ async def on_ready():
 async def hello(message):
     await message.channel.send('Hi!')
 
-bot.run('MTExMTkxNjE5MTM1OTk1OTA3MQ.G3XNpH.UbUG0D7mtafuUhkpBnDYDEDa_NNez6cNmRSogM')
+bot.run('Token')
