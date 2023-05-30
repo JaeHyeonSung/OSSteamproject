@@ -79,25 +79,22 @@ async def 날짜(message):
         date = "금일 : " + datetime.datetime.now().strftime("%Y"+"년"+"%m"+"월"+"%d"+"일")
         await message.channel.send(date)
         
-@bot.event
-async def on_message(message):
-    content = message.content
-
-    if message.author.bot:
-        return None
-    if message.content.endswith("지도"):  # 대구대지도를 끝말 '지도'로 불러옴
-        file = discord.File("C:\images\대구대지도.JPG")
+@bot.command()
+async def 지도(message):
+    college = message.message.content
+    if college.endswith("지도"):
+        file = discord.File("C:\images\대구대지도.png")
         await message.channel.send(file=file)
         await message.channel.send(
-            "대구대 지도입니다.\n 다음과 같은 명령어를 입력시 해당 대학의 지도가 출력됩니다.\n 간호대학, 경영대학, 공과대학, 과학생명융합대학, 법행정대학, 사범대학, 사회과학대학, 인문대학, 재활과학대학, 정보통신대학, 조형예술대학")
-
-    if message.content.startswith(
-            "과학생명융합") or "과생융" in content:  # 과학생명융합대학 지도를 불러옴 키워드 "과학생명융합대학 , 과생융"  (대학 지도는 대구대 홈페이지 2023 대학 기준 지도)
-        file1 = discord.File("C:\images\과학생명융합대학1호관.png")
-        file2 = discord.File("C:\images\과학생명융합대학2호관.png")
-        file3 = discord.File("C:\images\과학생명융합대학3호관.png")
-        file4 = discord.File("C:\images\과학생명융합대학5호관.png")
-        file5 = discord.File("C:\images\과학생명융합대학6호관.png")
+            "대구대 지도입니다.\n 다음과 같은 명령어를 입력시 해당 대학의 지도가 출력됩니다.\n 간호대학,"
+            " 경영대학, 공과대학, 과학생명융합대학, 법행정대학, 사범대학, 사회과학대학, 인문대학,"
+            " 재활과학대학, 정보통신대학, 조형예술대학")
+    if college.endswith("과학생명융합") or "과생융" in college:
+        file1 = discord.File("C:\images\과생융1호관.png")
+        file2 = discord.File("C:\images\과생융2호관.png")
+        file3 = discord.File("C:\images\과생융3호관.png")
+        file4 = discord.File("C:\images\과생융5호관.png")
+        file5 = discord.File("C:\images\과생융6호관.png")
         await message.channel.send(file=file1)
         await message.channel.send(file=file2)
         await message.channel.send(file=file3)
@@ -105,53 +102,55 @@ async def on_message(message):
         await message.channel.send(file=file5)
         await message.channel.send("과학생명융합대학 지도입니다. \n '과생융' 키워드를 이용해 간편하게 입력하세요. ")
 
-    if message.content.startswith("간호대"):
-        file = discord.File("C:\images\간호대학.png")
+    if college.endswith("간호대학") or "간호대" in college:
+        file = discord.File("C:\images\간호대학.png")
         await message.channel.send(file=file)
         await message.channel.send("간호대학 지도입니다.")
 
-    if message.content.startswith("법행대"):
-        file = discord.File("C:\images\법행정대학.png")
+    if college.endswith("법행대"):
+        file = discord.File("C:\images\법행정대.png")
         await message.channel.send(file=file)
         await message.channel.send("법행대학 지도입니다.")
 
-    if message.content.startswith("경영대"):
-        file = discord.File("C:\images\경영대학.png")
+    if college.endswith("경영대"):
+        file = discord.File("C:\images\경영대학.png")
         await message.channel.send(file=file)
         await message.channel.send("경영대학 지도입니다.")
 
-    if message.content.startswith("공과대") or "공대" in content:
-        file = discord.File("C:\images\공과대학.png")
+    if college.endswith("공과대") or "공대" in college:
+        file = discord.File("C:\images\공과대학.png")
         await message.channel.send(file=file)
         await message.channel.send("공과대학 지도입니다. \n '공대' 키워드를 이용해서 간편하게 입력하세요.")
 
-    if message.content.startswith("사범대") or "사대" in content:
-        file = discord.File("C:\images\공과대학.png")
+    if college.endswith("사범대"):
+        file = discord.File("C:\images\사범대.png")
         await message.channel.send(file=file)
         await message.channel.send("사범대학 지도입니다. \n '사대' 키워드를 이용해서 간편하게 입력하세요.")
 
-    if message.content.startswith("사회과학대") or "사과대" in content:
-        file = discord.File("C:\images\사회과학대학.png")
+    if college.endswith("사회과학대학") or "사과대" in college:
+        file = discord.File("C:\images\사과대.png")
         await message.channel.send(file=file)
         await message.channel.send("사회과학대학 지도입니다. \n '사과대' 키워드를 이용해서 간편하게 입력하세요.")
 
-    if message.content.startswith("인문대"):
-        file = discord.File("C:\images\인문과학대학.png")
+
+    if college.endswith("인문대"):
+        file = discord.File("C:\images\인문대학.png")
         await message.channel.send(file=file)
         await message.channel.send("인문대학 지도입니다.")
 
-    if message.content.startswith("재활과학대학") or "재과대" in content:
-        file = discord.File("C:\images\재활과학대학.png")
+    if college.endswith("재활과학대학") or "재과대" in college:
+        file = discord.File("C:\images\재과대.png")
         await message.channel.send(file=file)
         await message.channel.send("재활과학 지도입니다. \n '재과대' 키워드를 통해 간편하게 입력하세요")
 
-    if message.content.startswith("정보통신대학") or "정통대" in content:
-        file = discord.File("C:\images\사회과학대학.png")
+    if college.endswith("정보통신대학") or "정통대" in college:
+        file = discord.File("C:\images\정통대.png")
         await message.channel.send(file=file)
         await message.channel.send("정보통신대학 지도입니다. \n '정통대' 키워드를 통해 간편하게 입력하세요")
 
-    if message.content.endswith("조형예술대학") or "조예대" in content:
-        file = discord.File("C:\images\조형예술대학.png")
+    if college.endswith("조형예술대학") or "조예대" in college:
+        file = discord.File("C:\images\조예대.png")
         await message.channel.send(file=file)
         await message.channel.send("조형예술대학 지도입니다. \n '조예대' 키워드를 통해 간편하게 입력하세요")
+        
 bot.run('token')
